@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&subset=cyrillic");
+.reveal {
+  font-size: 36px; }
+  .reveal h1,
+  .reveal h2,
+  .reveal h3 {
+    font-family: 'Roboto'; }
+  .reveal body::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: url(../../lib/images/webacademy-logo.png) right bottom no-repeat;
+    background-size: 120px 120px; }
+  .reveal pre {
+    font-size: .5em; }
+    .reveal pre[class] {
+      position: relative; }
+      .reveal pre[class]::after {
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        color: white; }
+    .reveal pre.css::after {
+      content: 'CSS'; }
+    .reveal pre.less::after {
+      content: 'LESS'; }
+    .reveal pre.sass::after {
+      content: 'Sass'; }
+  .reveal section img {
+    border: none;
+    box-shadow: none; }
+  .reveal section.section-about .author {
+    display: flex;
+    align-items: flex-start; }
+  .reveal section.section-about .author-name {
+    font-size: 32px; }
+  .reveal section.section-about .author-info {
+    list-style: none; }
+  .reveal section.section-about .author-photo {
+    width: 400px; }
+  .reveal section.section-tips-at-root {
+    padding: 0;
+    transform: none; }
+  .reveal .slides .section-header {
+    margin-bottom: 1em; }
+  .reveal .slides .code-example {
+    display: flex;
+    align-items: flex-start; }
+    .reveal .slides .code-example-item {
+      width: 50%; }
+  .reveal .slides .spec-link span {
+    font-size: .75em;
+    color: #bbb; }
+    .reveal .slides .spec-link span.is-abandoned {
+      color: red; }
+  .reveal .slide-background {
+    background: url(../../lib/images/webacademy-logo.png) no-repeat;
+    background-position: calc(100vw - 130px) calc(100vh - 180px);
+    background-size: 100px 100px; }
+    .mainpage .reveal .slide-background {
+      background: url(../../lib/images/webacademy-title.jpg) center no-repeat;
+      background-size: cover;
+      transition: none; }
+    html:not(.mainpage) .reveal .slide-background {
+      transition: none; }
+    .history .reveal .slide-background {
+      background: url(../../lib/images/dino.jpg) no-repeat;
+      background-size: cover; }

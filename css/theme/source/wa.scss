@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&subset=cyrillic');
+
+.reveal {
+  font-size: 36px;
+  
+  h1,
+  h2,
+  h3 {
+    font-family: 'Roboto';
+  }
+  
+  body {
+    
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background: url(../../lib/images/webacademy-logo.png) right bottom no-repeat;
+      background-size: 120px 120px;
+    } 
+  }
+  
+  pre {
+    font-size: .5em;
+      
+    &[class] {
+      position: relative;
+      
+      &::after {
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        color: white;
+      }
+    }
+    
+    &.css {
+      
+      &::after {
+        content: 'CSS';
+      }
+    }
+    
+    &.less {
+      
+      &::after {
+        content: 'LESS';
+      }
+    }
+    
+    &.sass {
+      
+      &::after {
+        content: 'Sass';
+      }
+    }
+  }
+  
+  section {
+    
+    img {
+      border: none;
+      box-shadow: none;
+    }
+
+    &.section-about {
+      
+      .author {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .author-name {
+        font-size: 32px;
+      }
+      
+      .author-info {
+        list-style: none;
+      }
+
+      .author-photo {
+        width: 400px;
+      }
+    }
+    
+    &.section-tips-at-root {
+      padding: 0;
+      transform: none;
+    }
+  }
+  
+  .slides {
+    
+    
+    .mainpage {
+    }
+    
+    .section-header {
+      margin-bottom: 1em;
+    }
+    
+    .code-example {
+      display: flex;
+      align-items: flex-start;
+      
+      &-item {
+        width: 50%;
+      }
+    }
+    
+    .spec-link {
+      
+      span {
+        font-size: .75em;
+        color: #bbb;
+        
+        &.is-abandoned {
+          color: red;
+        } 
+      }
+    }
+  }
+  
+  // BACKGROUNDS
+  
+  .slide-background {
+    background: url(../../lib/images/webacademy-logo.png) no-repeat;
+    background-position: calc(100vw - 130px) calc(100vh - 180px);
+    background-size: 100px 100px;
+
+    .mainpage & {
+      background: url(../../lib/images/webacademy-title.jpg) center no-repeat;
+      background-size: cover;
+      transition: none;
+    }
+    
+    html:not(.mainpage) & {
+      transition: none;
+    }
+    
+    .history & {
+      background: url(../../lib/images/dino.jpg) no-repeat;
+      background-size: cover;
+    }
+  }
+}

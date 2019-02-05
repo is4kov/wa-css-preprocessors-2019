@@ -1,0 +1,554 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CSS Preprocessors - Tips and Tricks</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/theme/wa.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="section-mainpage" data-state="mainpage"></section>
+				
+				<section class="section-start" data-state="start">
+					<h1>CSS Preprocessors</h1>
+					<h3>Tips & tricks</h3>
+					<p>Yevhen Isakov</p>
+				</section>
+				
+				<section class="section-about" data-state="about">
+					<div class="author">
+						<ul class="author-info">
+							<li>Yevhen Isakov</li>
+							<li class="fragment">Software Engineer @ EPAM Systems</li>
+							<li class="fragment">11+ years</li>
+							<li class="fragment">Speaker at KharkivCSS 2018, LvivCSS 2018</li>
+						</ul>
+						<img src="lib/images/me.jpg" alt="" class="author-photo" />
+					</div>
+				</section>
+				
+				<section class="section-agenda" data-state="agenda">
+					<div class="section-header">Agenda</div>
+					<ul>
+						<li class="fragment">History</li>
+						<li class="fragment">Three Kingdoms</li>
+						<li class="fragment">Possibilities</li>
+						<li class="fragment">The Good, The Bad & The Ugly</li>
+						<li class="fragment">Nowadays</li>
+					</ul>
+				</section>
+				
+				<section class="section-history" data-state="history">
+					<div class="fragment" style="color:black;font-size:3em">2006</div>
+				</section>
+				
+				<section class="section-sass" data-state="sass">
+					<div><img src="lib/images/sass-logo.svg" alt=""></div>
+					<p class="fragment"><a href="http://sass-lang.com" target="_blank">sass-lang.com</a>, 2006</p>
+				</section>
+				
+				<section class="section-sass-not-sass" data-state="Sass-not-SASS">
+					<img src="lib/images/sassnotsass.jpg" alt="">
+					<div>
+						<a href="http://sassnotsass.com/" target="_blank">sassnotsass.com</a>
+					</div>
+				</section>
+				
+				<section class="section-sass-code" data-state="sass-code">
+					<div class="code-example">
+						<div class="code-example-item">
+							<pre><code class="sass">nav
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+
+  li
+    display: inline-block
+
+  a
+    display: block
+    padding: 6px 12px
+    text-decoration: none
+</code></pre>
+						</div>
+						<div class="code-example-item">
+							<pre><code class="sass">nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    }
+  }</code></pre>
+						</div>
+					</div>
+				</section>
+				
+				<section class="section-less" data-state="less">
+					<img src="lib/images/less-logo.png" alt="">
+					<p class="fragment"><a href="http://lesscss.org/" target="_blank">lesscss.org</a>, 2009</p>
+				</section>
+				
+				<section class="section-stylus" data-state="stylus">
+					<img src="lib/images/stylus-logo.png" alt="">
+					<p class="fragment"><a href="http://stylus-lang.com" target="_blank">stylus-lang.com</a>, 2009</p>
+				</section>
+				
+				<section class="section-needs" data-state="needs">
+					<p>CSS had no:</p>
+					<ul>
+						<li class="fragment">Variables</li>
+						<li class="fragment">Nesting</li>
+						<li class="fragment">Mixins</li>
+						<li class="fragment">Math</li>
+						<li class="fragment">Color functions</li>
+						<li class="fragment">Loops & conditions</li>
+					</ul>
+				</section>
+				
+				<section class="section-variables" data-state="variables">
+					<div class="section-header">Variables</div>
+					<div class="fragment">
+						<pre><code class="sass">$font-stack: Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  }</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-mixins" data-state="mixins">
+					<div class="section-header">Mixins</div>
+					<div class="fragment">
+						<pre><code class="sass">@mixin toolbar-theme {
+  background-color: hsl(120, 70%, 95%);
+  border-radius: 4px;
+  border: 1px solid currentColor;
+  }
+
+.toolbar {
+  @include toolbar-theme;
+  }</code></pre>
+					</div>
+					<div class="fragment">
+						<pre><code class="sass">@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+  }</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-nesting" data-state="nesting">
+					<div class="section-header">Nesting</div>
+					<div class="fragment">
+						<pre><code class="sass">.block {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__element { 
+    display: inline-block;
+
+    &--modifier {
+      display: block;
+      padding: 6px 12px;
+      text-decoration: none;
+      }
+    }
+  }</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-math" data-state="math">
+					<div class="section-header">Math</div>
+					<div class="fragment">
+						<pre><code class="sass">ul {
+  width: 120px * 8;
+  padding-left: 20px / 4; 
+  }</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-loops">
+					<div class="section-header">Loops</div>
+					<div class="fragment">
+						<pre><code class="sass">@for $i from 1 to 5 {
+  .item-#{i} {
+    left: $item-width * $i;
+    }
+  }</code></pre>
+					</div>
+					<div class="fragment">
+						<pre><code class="less">.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1));
+
+  .item-@{counter} {
+    left: @item-width * @counter;
+    }
+  }
+
+.loop(5)</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-import">
+					<div class="section-header">@import</div>
+				</section>
+				
+				<section class="section-tips" data-state="tips">
+					<h2>Tips & tricks</h2>
+				</section>
+
+				<section class="section-tips-content" data-state="@content">
+					<div class="section-header">@content</div>
+					<div class="fragment">
+						<pre><code class="sass">@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+      }
+  } @else {
+    @content;
+    }
+  }
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+      }
+  } @else {
+    @content;
+    }
+  }</code></pre>
+					</div>
+				</section>
+
+				<section class="section-tips-context" data-state="context">
+					<div class="section-header">Context</div>
+					<div class="fragment">
+						<pre><code class="sass">.order-summary {
+  $context: &;
+
+  &__row {
+
+    &--header {
+      background: rgba($purple-ultralight, .5);
+      }
+    }
+
+  &__title {
+
+    #{$context}__row--header &,
+    #{$context}__row--total & {
+      padding-left: $row-offset-horizontal;
+      }
+    }
+
+  &__value {
+
+    #{$context}__row--header &,
+    #{$context}__row--total & {
+      padding-right: $row-offset-horizontal;
+      }
+    }
+  }</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-tips-at-root" data-state="at-root">
+					<div class="section-header">@at-root</div>
+					<div class="fragment">
+						<pre><code class="sass">@mixin plus($size: 'small') {
+
+  $context: &;
+							
+  @if ($size == 'small') {
+
+    @at-root {
+
+      .add-to-cart--expanded {
+
+        &#{$context} {
+
+          &::before {
+            transform: $plus-centering-transform-xy rotate(0deg);
+            }
+
+          &::after {
+            transform: $plus-centering-transform-xy rotate(90deg);
+            }
+          }
+        }
+      }
+    }
+  }</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-tips-at-root-advanced" data-state="at-root-adv">
+					<div class="section-fragment">@at-root <span class="fragment">with params</span></div>
+					<div class="fragment">
+						<pre><code class="sass">@media print {
+
+  .parent {
+
+    .child {
+
+      @at-root(without: media) {
+        color: green;
+        }
+      }
+    }
+  }</code></pre>
+					</div>
+					<div class="fragment">
+						<pre><code class="css">.parent .child {
+  color: green;
+  }</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-map-get" data-state="map-get">
+					<div class="section-header">map-get()</div>
+					<div class="fragment">
+						<pre><code class="sass">$favorite: (
+  common: (
+    background-color: $gray-dark,
+    close-icon-color: rgba($white, .2)
+  ),
+  header: (
+    background-color: $gray-medium,
+    color: $white
+  ),
+  list: (
+    scrollbar-color: $gray-medium
+  ),
+  item: (
+    background-color: $gray-dark,
+    in-between-separator-color: $gray-medium,
+    close-icon-color: $red,
+    title-color: $white,
+    data: (
+      header-color: $gray,
+      color: $white,
+      currency-sign-color: $gray-extralight
+    )
+  )
+);
+
+.favorite-header {
+  background: map-get(map-get($favorite, header), background-color);
+  }</code></pre>
+					</div>
+				</section>
+				
+				<section class="section-tips-extend" data-state="extend">
+					<div class="fragment">@extend</div>
+					<img src="lib/images/extend.png" alt="" class="extend-image">
+				</section>
+
+				<section class="section-css-nowadays" data-state="css-nowadays">
+					<h2>CSS Nowadays</h2>
+				</section>
+
+				<section class="section-needs" data-state="needs">
+					<div class="section-header">In 2019 CSS preprocessors can:</div>
+					<ul>
+						<li class="fragment">Variables</li>
+						<li class="fragment">Nesting</li>
+						<li class="fragment">Mixins</li>
+						<li class="fragment">Math functions</li>
+						<li class="fragment">Color functions</li>
+						<li class="fragment">Loops & conditions</li>
+					</ul>
+					<p class="fragment">What does pure CSS can?</p>
+				</section>
+
+				<section class="section-css-variables" data-state="css-variables">
+					<div class="section-header">CSS Variables</div>
+					<div class="fragment">
+						<pre><code class="css">:root {
+  --font-stack: Helvetica, sans-serif;
+  --primary-color: #333;
+  }
+						
+body {
+  font: 100% var(--font-stack);
+  color: var(--primary-color);
+  }</code></pre>
+						<div>
+							<a href="https://www.w3.org/TR/css-variables-1/" target="_blank">CSS Custom Properties for Cascading Variables Module Level 1</a>
+						</div>
+					</div>
+				</section>
+				
+				<section class="section-css-variables-support" data-state="css-variables-support">
+					<img src="lib/images/caniuse-variables.jpg" alt="">
+				</section>
+
+				<section class="section-css-nesting" data-state="css-nesting">
+					<div class="section-header">Nesting</div>
+					<div class="fragment">
+						<pre><code class="css">.block {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__element { 
+    display: inline-block;
+
+    &--modifier {
+      display: block;
+      padding: 6px 12px;
+      text-decoration: none;
+      }
+    }
+  }</code></pre>
+						<div class="spec-link">
+							<a href="http://tabatkins.github.io/specs/css-nesting/" target="_blank">CSS Nesting Module Level 3 <span>(Editor Draft)</span></a>
+						</div>
+					</div>
+				</section>
+
+				<section class="section-css-math" data-state="css-math">
+					<div class="section-header">Math</div>
+					<div class="fragment">
+						<pre><code class="css">ul {
+  width: calc(120px * 8);
+  padding: calc(12px + .5em);
+  }</code></pre>
+						<div class="spec-link">
+							<a href="https://www.w3.org/TR/css-values-3/#calc-notation" target="_blank">CSS Values and Units Module Level 3</a>
+						</div>
+					</div>
+				</section>
+
+				<section class="section-css-math-support" data-state="css-math-support">
+					<img src="lib/images/caniuse-calc.jpg" alt="">
+				</section>
+
+				<section class="section-css-mixins" data-state="css-mixins">
+					<div class="section-header">Mixins</div>
+					<div class="fragment">
+						<pre><code class="css">:root {
+  --toolbar-theme: {
+    background-color: hsl(120, 70%, 95%);
+    border-radius: 4px;
+    border: 1px solid var(--theme-color late);
+    };
+  }
+
+.toolbar { 
+  @apply --toolbar-theme;
+  }</code></pre>
+						<div class="spec-link">
+							<a href="http://tabatkins.github.io/specs/css-apply-rule/" target="_blank">CSS @apply Rule <span class="is-abandoned">(Abandoned)</span></a>
+						</div>
+						<p class="fragment">
+							<a href="https://www.xanthir.com/b4o00">Why I Abandoned @apply (Apr 24, 2017)</a>
+						</p>
+					</div>
+				</section>
+				
+				<section class="section-postcss">
+					<div class="section-header">PostCSS</div>
+					<img src="lib/images/postcss-logo.svg" alt="">
+					<p class="fragment"><a href="https://postcss.org/" target="_blank">postcss.org</a>, 2013</p>
+				</section>
+				
+				<section class="section-postcss-possibilities" data-state="postcss-possibilities">
+					<div class="section-header">PostCSS</div>
+					<ul>
+						<li class="fragment">Vendor prefixes</li>
+						<li class="fragment">Mixins</li>
+						<li class="fragment">Nesting</li>
+						<li class="fragment">Loops</li>
+						<li class="fragment">...</li>
+					</ul>
+				</section>
+				
+				<section class="section-postcss-plugins" data-state="postcss-plugins">
+					<div class="section-header">PostCSS plugins</div>
+					<ul>
+						<li class="fragment">
+							<a href="https://github.com/postcss/autoprefixer" target="_blank">Autoprefixer</a> &mdash; vendor prefixes
+						</li>
+						<li class="fragment">
+							<a href="https://github.com/stylelint/stylelint/blob/master/docs/user-guide/postcss-plugin.md" target="_blank">StyleLint</a> &mdash; proofread and validation
+						</li>
+						<li class="fragment">
+							<a href="https://github.com/cssdream/cssgrace" target="_blank">CSSgrace</a> &mdash; old browsers
+						</li>
+						<li class="fragment">
+							<a href="https://github.com/csstools/postcss-preset-env" target="_blank">Preset Env</a> (ex CSSNext) &mdash; - future CSS syntax
+						</li>
+						<li class="fragment">
+							<a href="https://github.com/cssnano/cssnano" target="_blank">CSSNano</a> &mdash; - optimization & minification
+						</li>
+						<li class="fragment"><a href="https://github.com/jonathantneal/precss" target="_blank">PreCSS</a> - Sass-like syntax with all the power</li>
+					</ul>
+				</section>
+				
+				<section class="section-farewell" data-state="farewell">
+					<div class="tenor-gif-embed" data-postid="4872100" data-share-method="host" data-width="100%" data-aspect-ratio="1.7391304347826084"></div>
+					<script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+				</section>
+				
+				<section class="questions">
+					<div class="section-header">Thank you</div>
+					<p>Any questions?</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
